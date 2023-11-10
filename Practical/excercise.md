@@ -4,10 +4,24 @@
 
 **Playbook Template:**
 
-yaml
+```yaml
+---
+- name: Basic Web Server Deployment
+  hosts: web_servers
+  become: true  # Run tasks with sudo
 
-`--- - name: Basic Web Server Deployment   hosts: web_servers   become: true  # Run tasks with sudo    tasks:     - name: Install Nginx       apt:         name: nginx         state: present  # Ensure Nginx is installed      - name: Deploy HTML Page       copy:         content: "<html><body><h1>Hello, Ansible!</h1></body></html>"         dest: "/var/www/html/index.html"`
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present  # Ensure Nginx is installed
 
+    - name: Deploy HTML Page
+      copy:
+        content: "<html><body><h1>Hello, Ansible!</h1></body></html>"
+        dest: "/var/www/html/index.html"
+
+```
 **Instructions for Participants:**
 
 1. Set up a group of target servers in your inventory file (`inventory.ini`).
