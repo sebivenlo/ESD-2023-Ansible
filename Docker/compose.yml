@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  ansible-container:
+    image: ubuntu:latest
+    container_name: ansible-container
+    tty: true
+    volumes:
+      - ./ansible-playbooks:/ansible/playbooks
+    command: bash -c "apt-get update && apt-get install -y ansible && sleep infinity"

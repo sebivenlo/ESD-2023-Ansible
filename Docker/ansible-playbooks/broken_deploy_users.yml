@@ -1,0 +1,21 @@
+---
+- name: Configure Users
+  hosts: target_servers
+  become: true
+
+  vars:
+    users:
+      - name: alice
+        state: present
+        groups: developers
+      - name: bob
+        state: present
+        groups: administrators
+
+  tasks:
+    - name: Create or remove users
+      user:
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
+        groups: "{{ item.groups }}"
+      with_items: "{{ users }}"

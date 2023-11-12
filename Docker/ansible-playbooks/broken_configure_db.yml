@@ -1,0 +1,22 @@
+---
+- name: Configure Database
+  hosts: database_servers
+  become: true
+
+  vars:
+    db_name: "my_database"
+    db_user: "admin"
+    db_password "admin_pass"
+
+  tasks:
+    - name: Create Database
+      mysql_db:
+        name: "{{ db_name }}"
+        state: present
+
+    - name: Create Database User
+      mysql_user:
+        name: "{{ db_user }}"
+        password: "{{ db_password }}"
+        priv: "{{ db_name }}.*:ALL"
+        state: present
