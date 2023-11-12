@@ -6,8 +6,9 @@ Welcome to our Ansible Workshop! This repository contains resources for both the
 
 ## Getting Started
 ### Prerequisites
-Make sure you have Docker installed on your system. For instructions on how to access the excersises open [Prerequisites](./Practical/prerequisite.md).
+Make sure you have Docker installed on your system. For instructions on how to access the excersises open [Prerequisites](./Practical/Prerequisites.md).
 
+## Workshop
 ### Presentation
 The [Presentation](./Presentation) folder contains the slide deck and additional materials for understanding Ansible concepts. 
 
@@ -20,7 +21,7 @@ Navigate to the [Practical](./Practical) folder for hands-on exercises. Each sub
 - [Practice 2: Configuring a Database](./Practical/Exercise2.md)
 - [Practice 3: Configuring Users with Ansible](./Practical/Exercise3.md)
 
-## All References
+## References
 For your convenience, find all references consolidated in the [References](./References/References.md) folder.
 
 Feel free to explore, learn, and enjoy the Ansible Workshop!

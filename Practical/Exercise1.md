@@ -2,7 +2,7 @@
 
 **Objective:** Create an Ansible playbook to install and configure a basic web server (e.g., Nginx) and deploy a static HTML page.
 
-**Playbook Template:**
+**[Playbook Template](../Docker/ansible-playbooks/deploy_web_server.yml):**
 
 ```yaml
 ---
