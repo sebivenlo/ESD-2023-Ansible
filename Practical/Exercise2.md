@@ -1,53 +1,69 @@
-### Exercise: Configuring a Database
+### Exercise: Extending PostgreSQL Setup with Database and Table Creation
 
-**Objective:**
-Create an Ansible playbook that configures a database on target servers. Participants will need to identify and fix errors in variable assignments.
+**Objective:** Enhance the existing Ansible playbook to include tasks for creating a PostgreSQL database and defining tables within it.
 
-**[Broken Playbook Template](../Docker/ansible-playbooks/broken_configure_db.yml):**
-```yaml
----
-- name: Configure Database
-  hosts: database_servers
-  become: true
+**Instructions:**
+
+1. **Current Ansible Playbook:**
+   ```yaml
+   ---
+- name: Install PostgreSQL and configure database
+  hosts: localhost
+  become: yes  # Run tasks with sudo (root) privileges
 
   vars:
-    db_name: "my_database"
-    db_user: "admin"
-    db_password "admin_pass"
+    postgres_db_name: "your_database_name"
+    postgres_user: "your_username"
+    postgres_password: "your_password"
 
   tasks:
-    - name: Create Database
-      mysql_db:
-        name: "{{ db_name }}"
+    - name: Install PostgreSQL and its dependencies
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - postgresql
+        - postgresql-contrib
+
+    - name: "Install Python packages"
+      pip: "name={{ item }}  state=present"
+      with_items:
+        - psycopg2-binary
+
+    - name: Start and enable PostgreSQL service
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Create PostgreSQL user
+      postgresql_user:
+        name: "{{ postgres_user }}"
+        password: "{{ postgres_password }}"
+        encrypted: yes
         state: present
 
-    - name: Create Database User
-      mysql_user:
-        name: "{{ db_user }}"
-        password: "{{ db_password }}"
-        priv: "{{ db_name }}.*:ALL"
+    - name: Grant all privileges on the database to the user
+      postgresql_privs:
+        database: "{{ postgres_db_name }}"
+        user: "{{ postgres_user }}"
+        priv: ALL
         state: present
-```
 
-**Instructions for Participants:**
-1. Review the provided `broken_configure_db.yml` playbook.
-2. Identify and fix the intentional errors in variable assignments.
-3. Run the corrected playbook against your target database servers.
-   ```bash
-   ansible-playbook -i inventory.ini fixed_configure_db.yml
    ```
-4. Verify that the database and database user are configured as expected.
 
-**Discussion Points:**
-- How are variables used in Ansible playbooks?
-- What are the common mistakes made in variable assignments in the provided playbook?
-- How do the corrected variables affect the configuration of the database?
+2. **Tasks to Extend the Playbook:**
 
-**Common Errors:**
-1. Missing colon (`:`) in variable assignments.
-2. Missing `=` in variable assignments.
-3. Missing quotes around variable values.
+   a. **Task 4: Create a PostgreSQL Database**
+      - Add a task to create a new PostgreSQL database with a specified name.
+      - Utilize the `postgresql_db` Ansible module for this task.
 
-Encourage participants to work through the exercise collaboratively, discuss their findings, and share their solutions. This exercise is designed to provide hands-on experience in fixing common Ansible playbook errors related to variables.
+   b. **Task 5: Define Tables in the Database**
+      - Extend the playbook to include tasks that define tables within the created database.
+      - Use the `postgresql_table` Ansible module to define tables with specific columns.
 
+3. **Hints:**
+   - Refer to the Ansible documentation for the `postgresql_db` and `postgresql_table` modules.
+   - Consider using variables for the database and table names to make the playbook more flexible.
+   - Test the extended playbook on a local environment before applying it to production.
 
