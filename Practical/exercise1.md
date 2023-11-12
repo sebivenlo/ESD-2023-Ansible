@@ -42,4 +42,3 @@
 - What is the purpose of the `copy` module, and how is it used to deploy the HTML page?
 
 This exercise is designed to introduce participants to basic Ansible playbook structure, tasks, and modules. It provides a hands-on experience with a simple scenario, allowing participants to run the playbook and observe the results on their target servers. Participants can then discuss and explore how to extend or modify the playbook for more complex scenarios.
-
