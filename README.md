@@ -6,7 +6,7 @@ Welcome to our Ansible Workshop! This repository contains resources for both the
 
 ## Getting Started
 ### Prerequisites
-Make sure you have Ansible installed on your system. If not, refer to the [official Ansible installation guide](https://docs.ansible.com/ansible/latest/installation_guide/index.html).
+Make sure you have Docker installed on your system. For instructions on how to access the excersises open [Prerequisites](./Practical/Prerequisites.md).
 
 ### Presentation
 The [Presentation](./Presentation) folder contains the slide deck and additional materials for understanding Ansible concepts. 

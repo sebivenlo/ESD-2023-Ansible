@@ -2,6 +2,8 @@
 
 # Prerequieres
 
+The files needed for docker are located in the docker folder.
+
 ### Start the Docker Container:
 
 Run the following command in the directory where your `docker-compose.yml` file is located:
