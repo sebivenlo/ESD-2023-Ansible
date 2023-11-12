@@ -1,15 +1,26 @@
 ---
-- name: Basic Web Server Deployment
-  hosts: web_servers
-  become: true  # Run tasks with sudo
+- name: Install Nginx
+  hosts: localhost
+  become: yes  # Run tasks with sudo (root) privileges
 
   tasks:
+    - name: Update package cache
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"  # Conditional task execution based on the OS family
+
     - name: Install Nginx
       apt:
         name: nginx
-        state: present  # Ensure Nginx is installed
+        state: present  # Ensure that the package is installed
 
-    - name: Deploy HTML Page
-      copy:
-        content: "<html><body><h1>Hello, Ansible!</h1></body></html>"
-        dest: "/var/www/html/index.html"
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started  # Ensure that the service is running
+
+    - name: Enable Nginx service on boot
+      service:
+        name: nginx
+        enabled: yes  # Ensure that the service starts on boot
+

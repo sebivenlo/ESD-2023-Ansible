@@ -1,22 +1,43 @@
 ---
-- name: Configure Database
-  hosts: database_servers
-  become: true
+- name: Install PostgreSQL and configure database
+  hosts: localhost
+  become: yes  # Run tasks with sudo (root) privileges
 
   vars:
-    db_name: "my_database"
-    db_user: "admin"
-    db_password "admin_pass"
+    postgres_db_name: "your_database_name"
+    postgres_user: "your_username"
+    postgres_password: "your_password"
 
   tasks:
-    - name: Create Database
-      mysql_db:
-        name: "{{ db_name }}"
+    - name: Install PostgreSQL and its dependencies
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - postgresql
+        - postgresql-contrib
+
+    - name: "Install Python packages"
+      pip: "name={{ item }}  state=present"
+      with_items:
+        - psycopg2-binary
+
+    - name: Start and enable PostgreSQL service
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Create PostgreSQL user
+      postgresql_user:
+        name: "{{ postgres_user }}"
+        password: "{{ postgres_password }}"
+        encrypted: yes
         state: present
 
-    - name: Create Database User
-      mysql_user:
-        name: "{{ db_user }}"
-        password: "{{ db_password }}"
-        priv: "{{ db_name }}.*:ALL"
+    - name: Grant all privileges on the database to the user
+      postgresql_privs:
+        database: "{{ postgres_db_name }}"
+        user: "{{ postgres_user }}"
+        priv: ALL
         state: present

@@ -1,6 +1,6 @@
 ---
 - name: Configure Users
-  hosts: target_servers
+  hosts: localhost
   become: true
 
   vars:

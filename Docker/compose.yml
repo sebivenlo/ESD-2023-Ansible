@@ -1,10 +1,13 @@
 version: '3'
-
 services:
   ansible-container:
-    image: ubuntu:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: ansible-container
-    tty: true
+    ports:
+      - 80:80
+      - 5432:5432
+    command: tail -f /dev/null  # Keep the container running
     volumes:
-      - ./ansible-playbooks:/ansible/playbooks
-    command: bash -c "apt-get update && apt-get install -y ansible && sleep infinity"
+      - ./ansible-playbooks:/ansible-playbooks  # Mount a local directory with your Ansible playbooks

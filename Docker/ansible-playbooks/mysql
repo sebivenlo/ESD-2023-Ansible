@@ -1,0 +1,31 @@
+---
+- name: Install MySQL
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install MySQL server
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Start MySQL service
+      service:
+        name: mysql
+        state: started
+
+    - name: Set root password for MySQL
+      mysql_user:
+        name: root
+        password: "your_mysql_root_password"
+        host: localhost
+        login_unix_socket: true
+
+    - name: Install MySQL Python library
+      apt:
+        name: python3-mysqldb
+        state: present
