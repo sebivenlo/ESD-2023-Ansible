@@ -3,7 +3,7 @@
 **Objective:**
 Create an Ansible playbook that configures user accounts on target servers based on variables, and includes conditionals and loops.
 
-**[Broken Playbook Template:](../Docker/ansible-playbooks/broken_deploy_users.yml):**
+**[Broken Playbook Template](../Docker/ansible-playbooks/broken_deploy_users.yml):**
 ```yaml
 ---
 - name: Configure Users
