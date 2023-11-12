@@ -27,7 +27,7 @@ This will open a bash shell inside the running container.
 Once you are inside the container, navigate to the `/ansible/playbooks` directory (the mounted volume) and run your Ansible playbook. For example:
 
 ```bash
-cd /ansible/playbooks
+cd /ansible-playbooks
 ansible-playbook your_playbook.yml
 ```
 
