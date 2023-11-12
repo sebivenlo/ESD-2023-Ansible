@@ -1,4 +1,3 @@
----
 # Introduction to Ansible Playbooks
 
 ## What are Ansible Playbooks?
@@ -126,9 +125,9 @@ Ansible variables play a crucial role in customizing and controlling the behavio
         - restart apache
 ```
 
-## Leveraging Ansible Loops and Conditionals
+# Leveraging Ansible Loops and Conditionals
 
-### Introduction to Loops and Conditionals
+## Introduction to Loops and Conditionals
 
 In Ansible, loops and conditionals are powerful constructs that enable automation engineers to iterate over tasks and apply logic based on specific conditions. These features enhance the flexibility and efficiency of Ansible playbooks.
 

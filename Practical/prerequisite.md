@@ -1,6 +1,4 @@
----
-
-# Prerequieres
+# Prerequisites
 
 The files needed for docker are located in the docker folder.
 
