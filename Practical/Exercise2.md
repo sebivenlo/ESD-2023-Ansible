@@ -3,7 +3,7 @@
 **Objective:**
 Create an Ansible playbook that configures a database on target servers. Participants will need to identify and fix errors in variable assignments.
 
-**[Broken Playbook Template:](../Docker/ansible-playbooks/broken_configure_db.yml)**
+**[Broken Playbook Template](../Docker/ansible-playbooks/broken_configure_db.yml):**
 ```yaml
 ---
 - name: Configure Database
