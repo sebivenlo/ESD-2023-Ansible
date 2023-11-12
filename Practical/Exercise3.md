@@ -47,5 +47,3 @@ Create an Ansible playbook that configures user accounts on target servers based
 2. Typos in variable names
 3. Missing quotes around variable values
 4. Incorrect use of `with_items`
-
-Encourage participants to collaborate, discuss their findings, and troubleshoot the playbook together. This exercise provides hands-on experience in fixing common Ansible playbook errors while reinforcing the concepts of variables, conditionals, and loops.

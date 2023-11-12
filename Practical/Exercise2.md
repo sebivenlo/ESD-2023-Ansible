@@ -49,11 +49,11 @@
 
 2. **Tasks to Extend the Playbook:**
 
-   a. **Task 4: Create a PostgreSQL Database**
+   a. **Task 1: Create a PostgreSQL Database**
       - Add a task to create a new PostgreSQL database with a specified name.
       - Utilize the `postgresql_db` Ansible module for this task.
 
-   b. **Task 5: Define Tables in the Database**
+   b. **Task 2: Define Tables in the Database**
       - Extend the playbook to include tasks that define tables within the created database.
       - Use the `postgresql_table` Ansible module to define tables with specific columns.
 
