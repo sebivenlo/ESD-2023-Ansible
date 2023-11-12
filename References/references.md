@@ -38,4 +38,4 @@
 ### Ansible
 - https://www.pluralsight.com/resources/blog/cloud/ansible-vs-puppet-which-is-right-for-you
 - https://www.redhat.com/en/topics/automation/ansible-vs-puppet
-- - https://www.redhat.com/en/topics/automation/ansible-vs-chef#overview
+- https://www.redhat.com/en/topics/automation/ansible-vs-chef#overview
