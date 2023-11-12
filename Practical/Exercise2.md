@@ -5,7 +5,7 @@
 **Instructions:**
 
 1. **Current Ansible Playbook:**
-   ```yaml
+```yaml
    ---
 - name: Install PostgreSQL and configure database
   hosts: localhost
@@ -49,8 +49,7 @@
         user: "{{ postgres_user }}"
         priv: ALL
         state: present
-
-   ```
+```
 
 2. **Tasks to Extend the Playbook:**
 
