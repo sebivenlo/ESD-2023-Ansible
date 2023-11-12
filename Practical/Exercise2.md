@@ -6,7 +6,7 @@
 
 1. **Current Ansible Playbook:**
 ```yaml
-   ---
+---
 - name: Install PostgreSQL and configure database
   hosts: localhost
   become: yes  # Run tasks with sudo (root) privileges
@@ -23,32 +23,28 @@
         state: present
       with_items:
         - postgresql
-        - postgresql-contrib
 
     - name: "Install Python packages"
       pip: "name={{ item }}  state=present"
       with_items:
         - psycopg2-binary
 
-    - name: Start and enable PostgreSQL service
-      service:
-        name: postgresql
-        state: started
-        enabled: yes
+    - name: "Find out if PostgreSQL is initialized"
+      ansible.builtin.stat:
+        path: "/var/lib/pgsql/data/pg_hba.conf"
+      register: postgres_data
 
-    - name: Create PostgreSQL user
-      postgresql_user:
-        name: "{{ postgres_user }}"
-        password: "{{ postgres_password }}"
-        encrypted: yes
-        state: present
+    - name: "Start postgresql service"
+      shell: "/etc/init.d/postgresql start"
 
-    - name: Grant all privileges on the database to the user
-      postgresql_privs:
-        database: "{{ postgres_db_name }}"
-        user: "{{ postgres_user }}"
-        priv: ALL
-        state: present
+    - name: Create database
+      remote_user: root
+      become: yes
+      become_method: su
+      become_user: postgres
+      postgresql_db:
+        name: my_db
+
 ```
 
 2. **Tasks to Extend the Playbook:**
@@ -65,4 +61,12 @@
    - Refer to the Ansible documentation for the `postgresql_db` and `postgresql_table` modules.
    - Consider using variables for the database and table names to make the playbook more flexible.
    - Test the extended playbook on a local environment before applying it to production.
-
+ 
+4. **Important**
+   - Debian reqiuers the following authentication, for each postgres command. Copy & Paste the following lines between - name:... and the postgres module.
+```   
+     remote_user: root
+     become: yes
+     become_method: su
+     become_user: postgres
+```
